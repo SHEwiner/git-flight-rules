@@ -48,6 +48,8 @@ All commands should work for at least git version 2.13.0. See the [git website](
       - [Final Step: Pushing your changed repo history](#final-step-pushing-your-changed-repo-history)
     - [I need to change the content of a commit which is not my last](#i-need-to-change-the-content-of-a-commit-which-is-not-my-last)
   - [Staging](#staging)
+    - [I want to stage all tracked files and leave untracked files](#i-want-to-stage-all-tracked-files-and-leave-untracked-files)
+      - [To stage part of tracked files](#to-stage-part-of-tracked-files)
     - [I need to add staged changes to the previous commit](#i-need-to-add-staged-changes-to-the-previous-commit)
     - [I want to stage part of a new file, but not the whole file](#i-want-to-stage-part-of-a-new-file-but-not-the-whole-file)
     - [I want to add changes in one file to two different commits](#i-want-to-add-changes-in-one-file-to-two-different-commits)
@@ -109,6 +111,7 @@ All commands should work for at least git version 2.13.0. See the [git website](
     - [Clone all submodules](#clone-all-submodules)
     - [Remove a submodule](#remove-a-submodule)
   - [Miscellaneous Objects](#miscellaneous-objects)
+    - [Copy a folder or file from one branch to another](#copy-a-folder-or-file-from-one-branch-to-another)
     - [Restore a deleted file](#restore-a-deleted-file)
     - [Delete tag](#delete-tag)
     - [Recover a deleted tag](#recover-a-deleted-tag)
@@ -560,6 +563,24 @@ which tells Git to recreate the commit, but to leave the commit message unedited
 will do the rest of the work for you.
 
 ## Staging
+
+<a href="#i-want-to-stage-all-tracked-files-and-leave-untracked-files"></a>
+
+### I want to stage all tracked files and leave untracked files
+
+```sh
+$ git add -u
+```
+
+#### To stage part of tracked files
+
+```sh
+# to stage files with ext .txt
+$ git add -u *.txt
+
+# to stage all files inside directory src
+$ git add -u src/
+```
 
 <a href="#i-need-to-add-staged-changes-to-the-previous-commit"></a>
 ### I need to add staged changes to the previous commit
@@ -1080,6 +1101,11 @@ To rename a different (local) branch:
 ```sh
 (master)$ git branch -m old-name new-name
 ```
+ To delete the `old-name` remote branch and push the `new-name` local branch:
+ 
+ ```sh
+ (master)$ git push origin :old_name new_name
+ ```
 
 <a name="i-want-to-checkout-to-a-remote-branch-that-someone-else-is-working-on"></a>
 ### I want to checkout to a remote branch that someone else is working on
@@ -1590,6 +1616,12 @@ $ rm -rf .git/modules/submodulename
 ```
 
 ## Miscellaneous Objects
+
+### Copy a folder or file from one branch to another
+
+```sh
+$ git checkout <branch-you-want-the-directory-from> -- <folder-name or file-name>
+```
 
 ### Restore a deleted file
 
